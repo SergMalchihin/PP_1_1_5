@@ -21,7 +21,6 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void createUsersTable() {
         Transaction transaction = null;
-        Session HibernateUtil = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.createNativeQuery("CREATE TABLE IF NOT EXISTS test.users" +
                     " (id mediumint not null auto_increment, name VARCHAR(50), " +
@@ -41,7 +40,6 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void dropUsersTable() {
         Transaction transaction = null;
-        Session HibernateUtil = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.createNativeQuery("DROP TABLE IF EXISTS test.users").executeUpdate();
             transaction.commit();
@@ -57,7 +55,6 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void saveUser(String name, String lastName, byte age) {
         Transaction transaction = null;
-        Session HibernateUtil = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.save(new User(name, lastName, age));
             transaction.commit();
@@ -72,7 +69,6 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void removeUserById(long id) {
         Transaction transaction = null;
-        Session HibernateUtil = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.delete(session.get(User.class, id));
             transaction.commit();
@@ -87,7 +83,6 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        Session HibernateUtil = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from User", User.class).list();
         }
@@ -96,7 +91,6 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void cleanUsersTable() {
         Transaction transaction = null;
-        Session HibernateUtil = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.createNativeQuery("TRUNCATE TABLE test.users;").executeUpdate();
             transaction.commit();
