@@ -15,7 +15,7 @@ public class Util {
 //     реализуйте настройку соеденения с БД
 private static SessionFactory sessionFactory;
 
-    public static SessionFactory getConnection() {
+    public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
