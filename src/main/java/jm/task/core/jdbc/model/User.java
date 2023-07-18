@@ -1,6 +1,7 @@
 package jm.task.core.jdbc.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -18,7 +19,7 @@ public class User {
     @Column(name = "age")
     private Byte age;
 
-    public User() {
+    public User(List<User> fromUser) {
 
     }
 
@@ -26,6 +27,10 @@ public class User {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public User() {
+
     }
 
     public Long getId() {
